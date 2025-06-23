@@ -1,15 +1,18 @@
+import dotenv from "dotenv";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import usersRoutes from "./routes/userRoute";
 import wifiRoute from "./routes/wifiRoute";
 import {CLIENT_URL, SERVER_PORT} from "./config/settings";
-import {config} from "./config/mikro-orm";
+import config from "./config/mikro-orm";
 import logger from "./config/logger";
 import express, {Application} from "express";
 import {EntityManager, MikroORM} from "@mikro-orm/core";
 import logging from "./middleware/loggingMiddleware";
 
 const app: Application = express();
+
+dotenv.config();
 
 export const DI = {} as {
     orm: MikroORM,

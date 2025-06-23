@@ -1,10 +1,11 @@
-import {DB_URI} from "./settings";
-import allEntities from "../entities";
-import {Options} from "@mikro-orm/core";
+import { defineConfig } from '@mikro-orm/postgresql';
+import { PostgreSqlDriver } from '@mikro-orm/postgresql';
+import { entities } from '../entities';
+import { DB_URI } from './settings';
 
-export const config: Options = {
-    type: 'postgresql',
+export default defineConfig({
+    driver: PostgreSqlDriver,
     clientUrl: DB_URI,
-    entities: allEntities,
-    tsNode: true
-};
+    entities,
+    tsNode: true,
+});

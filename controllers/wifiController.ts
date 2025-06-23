@@ -98,7 +98,7 @@ async function deleteWifi(req: Request, res: Response) {
 
 async function getWifis(req: Request, res: Response) {
     try {
-        const wifis = await DI.em.find(Wifi, {}, {populate: true});
+        const wifis = await DI.em.find(Wifi, {}, { populate: [] });
         if (!wifis)
             return res.status(400).send("WiFis not found");
 

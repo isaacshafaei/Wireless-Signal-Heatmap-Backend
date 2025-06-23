@@ -1,8 +1,14 @@
-import {Router} from "express";
-import {deleteWifi, getUserWifi, getWifi, getWifis, postWifi} from "../controllers/wifiController";
-import {Test} from "../entities";
-import {DI} from "../index";
-import {QueryOrder} from "@mikro-orm/core";
+import { Router } from "express";
+import {
+  deleteWifi,
+  getUserWifi,
+  getWifi,
+  getWifis,
+  postWifi,
+} from "../controllers/wifiController";
+import { Test } from "../entities";
+import { DI } from "../index";
+import { QueryOrder } from "@mikro-orm/core";
 
 const router: Router = Router();
 
@@ -14,14 +20,16 @@ router.get("/getWifis", getWifis);
 
 router.delete("/deleteWifi/:id", deleteWifi);
 
-router.get("/getPhones/:id", async (req, res) => {
-    const {id} = req.params;
-    const phones = await DI.em.find(Test, {}, {
-        fields: ["name", "phone"], orderBy: {
-            phone: QueryOrder.ASC
-        }, limit: +id
-    });
-    res.send(phones);
+router.get("/getSignals/:limit", async (req, res) => {
+  const { limit } = req.params;
+  const signals = await DI.em.find(Test, {}, {
+    fields: ["location", "signalStrength"],
+    orderBy: {
+      signalStrength: QueryOrder.ASC,
+    },
+    limit: +limit,
+  });
+  res.send(signals);
 });
 
 export default router;
