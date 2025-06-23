@@ -36,6 +36,4 @@ npm run start
 ```
 
 
-*Android: https://github.com/Bioneisme/wifi-signal-strength-android*
-
-*FrontEnd: https://github.com/zaurbbb?tab=repositories*
+*Backend: https://github.com/isaacshafaei/Wireless-Signal-Heatmap-Backend
