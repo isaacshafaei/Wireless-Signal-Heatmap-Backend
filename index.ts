@@ -32,6 +32,7 @@ app.use("/api/wifi", wifiRoute);
 
 app.listen(SERVER_PORT, async () => {
     DI.orm = await MikroORM.init(config);
+    await DI.orm.getMigrator().up(); // <-- Apply all migrations automatically
     DI.em = DI.orm.em.fork();
 
     logger.info(`Server Started on port ${SERVER_PORT}`);
